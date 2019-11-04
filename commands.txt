@@ -1,0 +1,4 @@
+* "hello"
+    - says hello back
+* "avatar"
+    - shows you your avatar

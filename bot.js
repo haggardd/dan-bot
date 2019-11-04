@@ -6,9 +6,15 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    if (msg.content.toLowerCase() === 'hello dan') {
+    var msgContent = msg.content.toLowerCase();
+
+    if (msgContent === 'hello') {
         msg.reply('hello there');
     }
+
+    if (msgContent === 'avatar') {
+        msg.reply(msg.author.avatarURL);
+      }
 });
 
 client.login(process.env.BOT_TOKEN);
