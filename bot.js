@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const PREFIX = require('./config');
 
-const commmandPrefix = '-dan';
+const client = new Discord.Client();
 
 client.on('warn', console.warn);
 client.on('error', console.error);
@@ -18,18 +18,18 @@ client.on('reconnecting', () => {
     console.log('dan-bot is reconnecting!');
 });
 
-client.on('message', message => {
-    var messageContent = message.content.toLowerCase().trim();
+client.on('message', msg => {
+    if(msg.author.bot) return undefined;
+    if(!msg.content.startsWith(PREFIX)) return undefined;
 
-    if(messageContent.startsWith(commmandPrefix))
-    {
-        if (messageContent === commmandPrefix + 'hello') {
-            message.reply('hello there');
-        }
-    
-        if (messageContent === commmandPrefix + 'avatar') {
-            message.reply(message.author.avatarURL);
-        }
+    const args = msg.content.split(' ');
+    const searchString = args.slice(1).join(' ');
+
+    let command = msg.content.toLowerCase().split(' ')[0];
+    command = command.slice(PREFIX.length);
+
+    if(command === 'play') {
+        message.reply('testing');
     }
 });
 
