@@ -27,9 +27,7 @@ client.on('message', message => {
     if(!command.startsWith(prefix)) return undefined;
 
     if(command.startsWith(prefix + 'ping')) {
-        client.sendMessage(message, "Pong!", function(msg) {
-            client.updateMessage(msg, "Pong, **" + (msg.timestamp - message.timestamp) + "**ms")
-        })
+        message.reply('Pong!')
     }
 });
 
