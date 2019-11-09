@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
-const PREFIX = require('./config');
+const config = require('./config.json');
 
 const client = new Discord.Client();
+const prefix = config.prefix;
 
 client.on('warn', console.warn);
 client.on('error', console.error);
@@ -18,18 +19,17 @@ client.on('reconnecting', () => {
     console.log('dan-bot is reconnecting!');
 });
 
-client.on('message', msg => {
-    if(msg.author.bot) return undefined;
-    if(!msg.content.startsWith(PREFIX)) return undefined;
+client.on('message', message => {
+    let sender = message.author;
+    let command = message.content.toLowerCase().trim();
 
-    const args = msg.content.split(' ');
-    const searchString = args.slice(1).join(' ');
+    if(sender.bot) return undefined;
+    if(!command.startsWith(prefix)) return undefined;
 
-    let command = msg.content.toLowerCase().split(' ')[0];
-    command = command.slice(PREFIX.length);
-
-    if(command === 'play') {
-        message.reply('testing');
+    if(command.startsWith(prefix + 'ping')) {
+        client.sendMessage(message, "Pong!", function(msg) {
+            client.updateMessage(msg, "Pong, **" + (msg.timestamp - message.timestamp) + "**ms")
+        })
     }
 });
 

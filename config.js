@@ -1,1 +1,1 @@
-exports.PREFIX = "!";
+exports.prefix = "!";
