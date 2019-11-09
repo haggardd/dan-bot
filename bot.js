@@ -38,7 +38,7 @@ client.on('message', message => {
     }
 
     if(command.startsWith(prefix + 'roll')) {
-        message.reply('You rolled a ' + Math.floor(Math.random() * 7 + '!'));
+        message.reply('You rolled a ' + Math.floor(Math.random() * 7) + '!');
     }
 });
 
