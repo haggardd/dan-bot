@@ -10,7 +10,7 @@ client.on('error', console.error);
 client.on('ready', () => {
     console.log(`dan-bot logged in as ${client.user.tag}!`);
 
-    client.user.setGame('!help');
+    client.user.setActivity('!help', { type: 'LISTENING' });
 });
 
 client.on('disconnect', () => {
