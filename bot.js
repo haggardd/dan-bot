@@ -9,6 +9,8 @@ client.on('error', console.error);
 
 client.on('ready', () => {
     console.log(`dan-bot logged in as ${client.user.tag}!`);
+
+    client.user.setGame('!help');
 });
 
 client.on('disconnect', () => {
@@ -27,12 +29,16 @@ client.on('message', message => {
     if(sender.bot) return undefined;
     if(!command.startsWith(prefix)) return undefined;
 
+    if(command.startsWith(prefix + 'help')) {
+        message.reply('comming soon...');
+    }
+
     if(command.startsWith(prefix + 'ping')) {
         message.reply('pong!');
     }
 
     if(command.startsWith(prefix + 'roll')) {
-        message.reply('You rolled a ' + Math.floor(Math.random() * 7));
+        message.reply('You rolled a ' + Math.floor(Math.random() * 7 + '!'));
     }
 });
 
