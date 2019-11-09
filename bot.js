@@ -22,12 +22,17 @@ client.on('reconnecting', () => {
 client.on('message', message => {
     let sender = message.author;
     let command = message.content.toLowerCase().trim();
+    let arguments = command.split(' ');
 
     if(sender.bot) return undefined;
     if(!command.startsWith(prefix)) return undefined;
 
     if(command.startsWith(prefix + 'ping')) {
-        message.reply('Pong!')
+        message.reply('pong!');
+    }
+
+    if(command.startsWith(prefix + 'roll')) {
+        message.reply('You rolled a ' + Math.floor(Math.random() * 7));
     }
 });
 
