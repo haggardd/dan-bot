@@ -33,12 +33,16 @@ client.on('message', message => {
         message.reply('comming soon...');
     }
 
+    if(command.startsWith(prefix + 'git')) {
+        message.reply('https://github.com/haggardd/nad-bot take a look!');
+    }
+
     if(command.startsWith(prefix + 'ping')) {
         message.reply('pong!');
     }
 
     if(command.startsWith(prefix + 'roll')) {
-        message.reply('You rolled a ' + Math.floor(Math.random() * 7) + '!');
+        message.reply('you rolled a ' + Math.floor(Math.random() * 7) + '!');
     }
 });
 
