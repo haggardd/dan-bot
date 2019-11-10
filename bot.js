@@ -1,7 +1,8 @@
-const Discord = require('discord.js');
+const discord = require('discord.js');
+const ytdl = require('ytdl-core');
 const config = require('./config.json');
 
-const client = new Discord.Client();
+const client = new discord.Client();
 const prefix = config.prefix;
 
 client.on('warn', console.warn);
@@ -30,7 +31,7 @@ client.on('message', message => {
     if(!command.startsWith(prefix)) return undefined;
 
     if(command.startsWith(prefix + 'help')) {
-        message.reply('comming soon...');
+        message.reply('coming soon...');
     }
 
     if(command.startsWith(prefix + 'git')) {
@@ -43,6 +44,10 @@ client.on('message', message => {
 
     if(command.startsWith(prefix + 'roll')) {
         message.reply('you rolled a ' + Math.floor(Math.random() * 7) + '!');
+    }
+
+    if(command.startsWith(prefix + 'avatar')) {
+        message.reply(sender.avatarURL);
     }
 });
 
