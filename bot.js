@@ -8,7 +8,7 @@ const client = new discord.Client();
 client.config = config;
 
 fs.readdir("./events", (error, files) => {
-    if (err) return console.error(error);
+    if (error) return console.error(error);
     files.forEach(file => {
         const event = require(`./events/${file}`);
         let eventName = file.split(".")[0];
