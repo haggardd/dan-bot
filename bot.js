@@ -1,5 +1,4 @@
 const discord = require('discord.js');
-const ytdl = require('ytdl-core');
 const config = require('./config.json');
 
 const client = new discord.Client();
@@ -9,44 +8,43 @@ client.on('warn', console.warn);
 client.on('error', console.error);
 
 client.on('ready', () => {
-    console.log(`dan-bot logged in as ${client.user.tag}!`);
-
+    console.log(`nad-bot logged in as ${client.user.tag}!`);
     client.user.setActivity('!help', { type: 'LISTENING' });
 });
 
 client.on('disconnect', () => {
-    console.log('dan-bot disconnected!');
+    console.log('nad-bot disconnected!');
 });
 
 client.on('reconnecting', () => {
-    console.log('dan-bot is reconnecting!');
+    console.log('nad-bot is reconnecting!');
 });
 
 client.on('message', message => {
-    let sender = message.author;
-    let command = message.content.toLowerCase().trim();
-    let arguments = command.split(' ');
+    if (message.author.bot) return undefined;
+    if (message.content.indexOf(config.prefix) !== 0) return;
 
-    if(sender.bot) return undefined;
-    if(!command.startsWith(prefix)) return undefined;
+    const sender = message.author;
+    const arguments = message.content.slice(prefix.length).trim().split(/ +/g);
+    const command = arguments.shift().toLowerCase();
 
-    if(command.startsWith(prefix + 'help')) {
+    if (command.startsWith(prefix + 'help')) {
         message.reply('coming soon...');
     }
 
-    if(command.startsWith(prefix + 'git')) {
+    if (command === 'git') {
         message.reply('https://github.com/haggardd/nad-bot take a look!');
     }
 
-    if(command.startsWith(prefix + 'ping')) {
+    if (command === 'ping') {
         message.reply('pong!');
     }
 
-    if(command.startsWith(prefix + 'roll')) {
+    if (command === 'roll') {
         message.reply('you rolled a ' + Math.floor(Math.random() * 7) + '!');
     }
 
-    if(command.startsWith(prefix + 'avatar')) {
+    if (command === 'avatar') {
         message.reply(sender.avatarURL);
     }
 });
