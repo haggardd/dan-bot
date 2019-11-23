@@ -1,52 +1,32 @@
 const discord = require('discord.js');
+const Enmap = require("enmap")
+const fs = require("fs")
+
 const config = require('./config.json');
-
 const client = new discord.Client();
-const prefix = config.prefix;
 
-client.on('warn', console.warn);
-client.on('error', console.error);
+client.config = config;
 
-client.on('ready', () => {
-    console.log(`nad-bot logged in as ${client.user.tag}!`);
-    client.user.setActivity('!help', { type: 'LISTENING' });
+fs.readdir("./events", (error, files) => {
+    if (err) return console.error(error);
+    files.forEach(file => {
+        const event = require(`./events/${file}`);
+        let eventName = file.split(".")[0];
+        client.on(eventName, event.bind(null, client));
+    });
 });
 
-client.on('disconnect', () => {
-    console.log('nad-bot disconnected!');
-});
+client.commands = new Enmap();
 
-client.on('reconnecting', () => {
-    console.log('nad-bot is reconnecting!');
-});
-
-client.on('message', message => {
-    if (message.author.bot) return undefined;
-    if (message.content.indexOf(config.prefix) !== 0) return;
-
-    const sender = message.author;
-    const arguments = message.content.slice(prefix.length).trim().split(/ +/g);
-    const command = arguments.shift().toLowerCase();
-
-    if (command.startsWith(prefix + 'help')) {
-        message.reply('coming soon...');
-    }
-
-    if (command === 'git') {
-        message.reply('https://github.com/haggardd/nad-bot take a look!');
-    }
-
-    if (command === 'ping') {
-        message.reply('pong!');
-    }
-
-    if (command === 'roll') {
-        message.reply('you rolled a ' + Math.floor(Math.random() * 7) + '!');
-    }
-
-    if (command === 'avatar') {
-        message.reply(sender.avatarURL);
-    }
-});
+fs.readdir("./commands/", (error, files) => {
+    if (error) return console.error(error);
+    files.forEach(file => {
+        if (!file.endsWith(".js")) return;
+        let props = require(`./commands/${file}`);
+        let commandName = file.split(".")[0];
+        console.log(`Attempting to load command ${commandName}`);
+        client.commands.set(commandName, props);
+    })
+})
 
 client.login(process.env.BOT_TOKEN);
