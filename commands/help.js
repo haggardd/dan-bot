@@ -8,7 +8,7 @@ exports.run = (client, message, arguments) => {
         let output = `= Command List =\n\n[Use ${client.config.prefix}help <commandname> for details]\n`;
         const sorted = commands.array().sort((p, c) => p.help.category > c.help.category ? 1 : p.help.name > c.help.name && p.help.category === c.help.category ? 1 : -1);
         sorted.forEach(c => {
-            const category = c.help.category.toProperCase();
+            const category = c.help.category;
             if (currentCategory !== category) {
                 output += `\u200b\n== ${category} ==\n`;
                 currentCategory = category;
