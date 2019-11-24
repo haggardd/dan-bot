@@ -13,7 +13,7 @@ exports.run = (client, message, arguments) => {
                 output += `\u200b\n== ${category} ==\n`;
                 currentCategory = category;
             }
-            output += `${message.settings.prefix}${c.help.name}${" ".repeat(longest - c.help.name.length)} :: ${c.help.description}\n`;
+            output += `${client.config.prefix}${c.help.name}${" ".repeat(longest - c.help.name.length)} :: ${c.help.description}\n`;
         });
         message.channel.send(output, { code: "asciidoc", split: { char: "\u200b" } });
     } else {
