@@ -3,7 +3,7 @@ exports.run = (client, message, arguments) => {
 }
 
 exports.help = {
-    name: "help",
+    name: "roll",
     category: "Misc",
     description: "Rolls a 6 sided dice and replies with the number.",
     usage: "roll"

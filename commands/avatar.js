@@ -5,6 +5,6 @@ exports.run = (client, message, arguments) => {
 exports.help = {
     name: "avatar",
     category: "Misc",
-    description: "Replies with the users avatar.",
+    description: "Replies with the user's avatar.",
     usage: "avatar"
 };
