@@ -1,4 +1,4 @@
-module.exports = (client, message) => {
+module.exports = async (client, message) => {
     if (message.author.bot) return;
     if (message.content.indexOf(client.config.prefix) !== 0) return;
     
@@ -9,5 +9,5 @@ module.exports = (client, message) => {
 
     if (!executedCommand) return;
 
-    executedCommand.run(client, message, arguments);
+    await executedCommand.run(client, message, arguments);
 }
