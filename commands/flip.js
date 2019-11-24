@@ -1,6 +1,6 @@
 exports.run = (client, message, arguments) => {
     let outcomes = ['Heads', 'Tails'];
-    let outcome = outcomes.getRandom();
+    let outcome = outcomes[Math.floor(Math.random() * outcomes.length)];
 
     message.reply(`its ${outcome}!`).catch(console.error);
 }
