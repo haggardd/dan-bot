@@ -1,4 +1,4 @@
-const fortunes = require('./assets/fortunes.json');
+const fortunes = require('../assets/fortunes.json');
 
 exports.run = (client, message, arguments) => {
     message.reply(`your fortune says... '${fortunes.getRandom()}'`).catch(console.error);
