@@ -7,6 +7,8 @@ const client = new discord.Client();
 
 client.config = config;
 
+client.user.setActivity('!help', { type: 'LISTENING' });
+
 fs.readdir("./events", (error, files) => {
     if (error) return console.error(error);
     files.forEach(file => {
@@ -31,4 +33,3 @@ fs.readdir("./commands/", (error, files) => {
 })
 
 client.login(process.env.BOT_TOKEN);
-client.user.setActivity('!help', { type: 'LISTENING' });
