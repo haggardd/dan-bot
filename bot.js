@@ -6,8 +6,7 @@ const config = require('./config.json');
 const client = new discord.Client();
 
 client.config = config;
-
-client.user.setActivity('!help', { type: 'LISTENING' });
+client.user.setPresence({game: {name: '!help', type: 'LISTENING'}});
 
 fs.readdir("./events", (error, files) => {
     if (error) return console.error(error);
