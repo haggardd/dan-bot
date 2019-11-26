@@ -31,3 +31,4 @@ fs.readdir("./commands/", (error, files) => {
 })
 
 client.login(process.env.BOT_TOKEN);
+client.user.setActivity('!help', { type: 'LISTENING' });

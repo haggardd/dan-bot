@@ -11,3 +11,5 @@ module.exports = async (client, message) => {
 
     await executedCommand.run(client, message, arguments);
 }
+
+// TODO: make all commands asynchronous
