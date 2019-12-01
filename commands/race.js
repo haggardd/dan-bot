@@ -1,4 +1,4 @@
-const ProgressBar = require('./utilities/progress');
+const ProgressBar = require('../utilities/progressBar');
 
 exports.run = async (client, message, arguments) => {
   let racers = [
