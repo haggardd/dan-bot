@@ -14,7 +14,7 @@ exports.run = (client, message, arguments) => {
     }
   }
 
-  const bastion = new ProgressBar(':bar', {
+  const bot = new ProgressBar(':bar', {
     incomplete: '-\u2003',
     complete: '-\u2003',
     head: '🚘',
@@ -29,10 +29,10 @@ exports.run = (client, message, arguments) => {
 
   let raceStatusMessage = await message.channel.send({
     embed: {
-      color: Bastion.colors.BLUE,
+      color: client.colors.BLUE,
       title: 'Race',
       fields: [{
-          name: Bastion.user.tag,
+          name: client.user.tag,
           value: `:vertical_traffic_light: ${racers[0].join('')}:checkered_flag:`
         },
         {
@@ -48,31 +48,31 @@ exports.run = (client, message, arguments) => {
       racer.tick();
     }
     for (let i = 0; i < Number.random(1, 5); i++) {
-      bastion.tick();
+      bot.tick();
     }
 
-    if (bastion.lastDraw) {
+    if (bot.lastDraw) {
       let result = 'Race ',
-        progressBastion = `:vertical_traffic_light: ${bastion.lastDraw}:checkered_flag:`,
+        progressBot = `:vertical_traffic_light: ${bot.lastDraw}:checkered_flag:`,
         progressRacer = `:vertical_traffic_light: ${racer.lastDraw}:checkered_flag:`;
 
-      if (bastion.complete && !racer.complete) {
+      if (bot.complete && !racer.complete) {
         result += 'Ended';
-        progressBastion = `:vertical_traffic_light: ${bastion.lastDraw}:checkered_flag: :trophy:`;
-      } else if (!bastion.complete && racer.complete) {
+        progressBot = `:vertical_traffic_light: ${bot.lastDraw}:checkered_flag: :trophy:`;
+      } else if (!bot.complete && racer.complete) {
         result += 'Ended';
         progressRacer = `:vertical_traffic_light: ${racer.lastDraw}:checkered_flag: :trophy:`;
-      } else if (bastion.complete && racer.complete) {
+      } else if (bot.complete && racer.complete) {
         result += 'Ended - Draw';
       }
 
       raceStatusMessage.edit({
         embed: {
-          color: Bastion.colors.BLUE,
+          color: client.colors.BLUE,
           title: result,
           fields: [{
-              name: Bastion.user.tag,
-              value: progressBastion
+              name: client.user.tag,
+              value: progressBot
             },
             {
               name: message.author.tag,
@@ -82,7 +82,7 @@ exports.run = (client, message, arguments) => {
         }
       }).catch(() => {});
     }
-    if (bastion.complete || racer.complete) {
+    if (bot.complete || racer.complete) {
       clearInterval(timer);
     }
   }, 1000);
