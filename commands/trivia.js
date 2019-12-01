@@ -1,6 +1,3 @@
-const request = require('request-promise-native');
-let activeChannels = [];
-
 exports.run = async (client, message, arguments) => {
   // TODO: finish implementing trivia game
 }
