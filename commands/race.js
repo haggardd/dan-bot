@@ -1,6 +1,6 @@
 const ProgressBar = require('./utilities/progress');
 
-exports.run = (client, message, arguments) => {
+exports.run = async (client, message, arguments) => {
   let racers = [
     [],
     []
