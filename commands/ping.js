@@ -1,5 +1,5 @@
-exports.run = (client, message, arguments) => {
-  message.reply('pong! 🏓').catch(console.error);
+exports.run = async (client, message, arguments) => {
+  return await message.reply('pong! 🏓').catch(console.error);
 }
 
 exports.help = {

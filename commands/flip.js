@@ -1,8 +1,8 @@
-exports.run = (client, message, arguments) => {
+exports.run = async (client, message, arguments) => {
   let outcomes = ['Heads', 'Tails'];
   let outcome = outcomes[Math.floor(Math.random() * outcomes.length)];
 
-  message.reply(`its ${outcome}!`).catch(console.error);
+  return await message.reply(`its ${outcome}!`).catch(console.error);
 }
 
 exports.help = {

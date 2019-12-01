@@ -1,4 +1,4 @@
-exports.run = (client, message, arguments) => {
+exports.run = async (client, message, arguments) => {
   if (!arguments[0]) {
     const commands = client.commands;
     const commandNames = commands.keyArray();
@@ -15,7 +15,7 @@ exports.run = (client, message, arguments) => {
       }
       output += `${client.config.prefix}${c.help.name}${" ".repeat(longest - c.help.name.length)} :: ${c.help.description}\n`;
     });
-    message.channel.send(output, {
+    return await message.channel.send(output, {
       code: "asciidoc",
       split: {
         char: "\u200b"
@@ -25,7 +25,7 @@ exports.run = (client, message, arguments) => {
     let command = arguments[0];
     if (client.commands.has(command)) {
       command = client.commands.get(command);
-      message.channel.send(`= ${command.help.name} = \n${command.help.description}\nusage:: ${command.help.usage}\n= ${command.help.name} =`, {
+      return await message.channel.send(`= ${command.help.name} = \n${command.help.description}\nusage:: ${command.help.usage}\n= ${command.help.name} =`, {
         code: "asciidoc"
       });
     }

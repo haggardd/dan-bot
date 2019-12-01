@@ -1,5 +1,5 @@
-exports.run = (client, message, arguments) => {
-  message.reply(message.author.avatarURL).catch(console.error);
+exports.run = async (client, message, arguments) => {
+  return await message.reply(message.author.avatarURL).catch(console.error);
 }
 
 exports.help = {
