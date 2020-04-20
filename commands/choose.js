@@ -1,5 +1,5 @@
-exports.run = async (client, message) => {
-    if (arguments.length <= 1) {
+exports.run = async (client, message, args) => {
+    if (args.length <= 1) {
         return await message
             .reply("you need to give me one or more options to choose from! 👨‍⚖️")
             .catch(console.error);
@@ -7,7 +7,7 @@ exports.run = async (client, message) => {
         return await message
             .reply(
                 `in my opinion... '${
-                    arguments[Math.floor(Math.random() * arguments.length)]
+                    args[Math.floor(Math.random() * args.length)]
                 }' is the best option. 👨‍⚖️`
             )
             .catch(console.error);
