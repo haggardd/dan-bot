@@ -1,5 +1,7 @@
 exports.run = async (client, message) => {
-    return await message.reply(message.author.avatarURL).catch(console.error);
+    return await message
+        .reply(message.author.displayAvatarURL())
+        .catch(console.error);
 };
 
 exports.help = {
